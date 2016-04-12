@@ -30,7 +30,8 @@ var paths = {
 	plugins: ['./assets/js/plugins/*.js'],
 	css: ['./assets/css/*.css'],
 	fonts: ['./assets/fonts/*.*'],
-  images: ['./assets/images/*.*']
+  images: ['./assets/images/*.*'],
+  assets: ['./assets/*.*']
 };
 
 gulp.task('less', function() {
@@ -84,10 +85,15 @@ gulp.task('images', function() {
     .pipe(gulp.dest(destination + '/images'));
 });
 
+gulp.task('assets', function() {
+  return gulp.src(paths.assets)
+    .pipe(gulp.dest(destination));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.less, ['less']);
   gulp.watch(paths.js, ['js']);
   gulp.watch(paths.views, ['views']);
 });
 
-gulp.task('default', ['less', 'js', 'views', 'plugins', 'css', 'fonts', 'images']);
+gulp.task('default', ['less', 'js', 'views', 'plugins', 'css', 'fonts', 'images', 'assets']);
